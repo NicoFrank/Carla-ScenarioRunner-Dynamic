@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<scenarios>
+    <scenario name="DynamicWalkerCrossing_1" type="DynamicWalkerCrossing" town="Town02">
+        <ego_vehicle x="7.63" y="109.91" z="1.22" yaw="359" model="vehicle.lincoln.mkz2017" />
+    </scenario>
+    <scenario name="DynamicWalkerCrossing_2" type="DynamicWalkerCrossing" town="Town02">
+        <ego_vehicle x="180.93" y="105.31" z="1.22" yaw="180" model="vehicle.lincoln.mkz2017" />
+    </scenario>
+    <scenario name="DynamicWalkerCrossing_3" type="DynamicWalkerCrossing" town="Town03">
+        <ego_vehicle x="110" y="129" z="1" yaw="180" model="vehicle.lincoln.mkz2017" />
+    </scenario>
+    <scenario name="DynamicWalkerCrossing_4" type="DynamicWalkerCrossing" town="Town03">
+        <ego_vehicle x="232.36" y="113.29" z="2.46" yaw="90" model="vehicle.lincoln.mkz2017" />
+    </scenario>
+    <scenario name="DynamicWalkerCrossing_5" type="DynamicWalkerCrossing" town="Town05">
+        <ego_vehicle x="149.0" y="-108.4" z="0.1" yaw="90" model="vehicle.lincoln.mkz2017" />
+    </scenario>
+    <scenario name="DynamicWalkerCrossing_6" type="DynamicWalkerCrossing" town="Town05">
+        <ego_vehicle x="138.2" y="116.4" z="0.1" yaw="130" model="vehicle.lincoln.mkz2017" />
+    </scenario>
+    <scenario name="DynamicWalkerCrossing_7" type="DynamicWalkerCrossing" town="Town03">
+        <ego_vehicle x="90" y="129" z="1" yaw="180" model="vehicle.lincoln.mkz2017" />
+    </scenario>
+</scenarios>
