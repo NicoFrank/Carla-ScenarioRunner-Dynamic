@@ -2,59 +2,102 @@
 ![GitHub tag (latest SemVer)](https://img.shields.io/github/tag/carla-simulator/scenario_runner.svg)
 [![Build Status](https://travis-ci.com/carla-simulator/scenario_runner.svg?branch=master)](https://travis-ci.com/carla/scenario_runner)
 
-ScenarioRunner for CARLA
-========================
-This repository contains traffic scenario definition and an execution engine
-for CARLA. It also allows the execution of a simulation of the CARLA Challenge.
-You can use this system to prepare your agent for the CARLA Challenge.
-
-Scenarios can be defined through a Python interface, and with the newest version
-the scenario_runner also the upcoming [OpenSCENARIO](http://www.openscenario.org/) standard is supported.
-
-[![Scenario_Runner for CARLA](Docs/img/scenario_runner_video.png)](https://youtu.be/ChmF8IFagpo?t=68)
+ScenarioRunnerDynamic for CARLA
+===============================
+This repository contains the CarlaScenarioRunner 0.9.11 with all its belongings as well
+as a new Scenario. Instead of running a new script for similar scenarios, the included                   
+scenariory_runner_extended.py allows you to hand over a configuration id for the scenario, that varies the scenario.
+ 
+Carla 0.9.11 is required, you can follow this installation guide to download: https://carla.readthedocs.io/en/0.9.11/start_quickstart/
+Python 3.7 is needed to run the scripts as well for package installation.
 
 Getting the ScenarioRunner
 ---------------------------
 
-Use `git clone` or download the project from this page. Note that the master
-branch contains the latest fixes and features, and may be required to use the latest features from CARLA.
+1.Use `git clone` or download the project from this page. 
 
-It is important to also consider the release version that has to match the CARLA version.
+2.Go to the Main directory.
+
+3.Install neccesary packages for python=3.7 from requirements.txt. If Python 3.7 is your default version run "pip install -r requirements.txt".
+
+4.Add environment variables and Pytyhon paths. These are necessary for the system to find CARLA, and add the PythonAPI to the Python path.
+
+-For Linux 
+# ${CARLA_ROOT} is the CARLA installation directory
+# ${SCENARIO_RUNNER} is the ScenarioRunner installation directory
+# <VERSION> is the correct string for the system and Python version being used
+# In a build from source, the .egg files may be in: ${CARLA_ROOT}/PythonAPI/dist/ instead of ${CARLA_ROOT}/PythonAPI
+export CARLA_ROOT=/path/to/your/carla/installation
+export SCENARIO_RUNNER_ROOT=/path/to/your/scenario/runner/installation
+export PYTHONPATH=$PYTHONPATH:${CARLA_ROOT}/PythonAPI/carla/dist/carla-<VERSION>.egg
+export PYTHONPATH=$PYTHONPATH:${CARLA_ROOT}/PythonAPI/carla
+export PYTHONPATH=$PYTHONPATH:${CARLA_ROOT}/PythonAPI
+    
+-For Windows
+# %CARLA_ROOT% is the CARLA installation directory
+# %SCENARIO_RUNNER% is the ScenarioRunner installation directory
+# <VERSION> is the correct string for the system and Python version being used
+# In a build from source, the .egg files may be in: ${CARLA_ROOT}/PythonAPI/dist/ instead of ${CARLA_ROOT}/PythonAPI
+set CARLA_ROOT=\path\to\your\carla\installation
+set SCENARIO_RUNNER_ROOT=\path\to\your\scenario\runner\installation
+set PYTHONPATH=%PYTHONPATH%;%CARLA_ROOT%\PythonAPI\carla\dist\carla-<VERSION>.egg
+set PYTHONPATH=%PYTHONPATH%;%CARLA_ROOT%\PythonAPI\carla
+set PYTHONPATH=%PYTHONPATH%;%CARLA_ROOT%\PythonAPI
+
+
+If you already have a working Scenario_Runner for version 0.9.11 just add the files "scenario_runner_extended.py", "srunner/scenarios/object_crossing_walker.py" and "srunner/examples/WalkerCrossing.xml" in the matching folders.
 
 * [Version 0.9.11](https://github.com/carla-simulator/scenario_runner/releases/tag/v0.9.11) and the 0.9.11 Branch: Compatible with [CARLA 0.9.11](https://github.com/carla-simulator/carla/releases/tag/0.9.11)
-* [Version 0.9.10](https://github.com/carla-simulator/scenario_runner/releases/tag/v0.9.10) and the 0.9.10 Branch: Compatible with [CARLA 0.9.10](https://github.com/carla-simulator/carla/releases/tag/0.9.10)
-* [Version 0.9.9](https://github.com/carla-simulator/scenario_runner/releases/tag/v0.9.9) and the 0.9.9 Branch: Compatible with [CARLA 0.9.9](https://github.com/carla-simulator/carla/releases/tag/0.9.9). Use the 0.9.9 branch, if you use CARLA 0.9.9.4.
-* [Version 0.9.8](https://github.com/carla-simulator/scenario_runner/releases/tag/v0.9.8) and the 0.9.8 Branch: Compatible with [CARLA 0.9.8](https://github.com/carla-simulator/carla/releases/tag/0.9.8)
-* [Version 0.9.7](https://github.com/carla-simulator/scenario_runner/releases/tag/v0.9.7) and the 0.9.7 Branch: Compatible with [CARLA 0.9.7](https://github.com/carla-simulator/carla/releases/tag/0.9.7) but not with the later release patch versions.
-* [Version 0.9.6](https://github.com/carla-simulator/scenario_runner/releases/tag/v0.9.6) and the 0.9.6 Branch: Compatible with [CARLA 0.9.6](https://github.com/carla-simulator/carla/releases/tag/0.9.6)
-* [Version 0.9.5](https://github.com/carla-simulator/scenario_runner/releases/tag/v0.9.5) and [Version 0.9.5.1](https://github.com/carla-simulator/scenario_runner/releases/tag/v0.9.5.1): Compatible with [CARLA 0.9.5](https://github.com/carla-simulator/carla/releases/tag/0.9.5)
-* [Version 0.9.2](https://github.com/carla-simulator/scenario_runner/releases/tag/0.9.2): Compatible with [CARLA 0.9.2](https://github.com/carla-simulator/carla/releases/tag/0.9.2)
-
-To use a particular version you can either download the corresponding tarball or simply checkout the version tag associated to the release (e.g. git checkout v0.9.5)
 
 Currently no build is required, as all code is in Python.
 
-Using the ScenarioRunner
-------------------------
 
-Please take a look at our [Getting started](Docs/getting_scenariorunner.md)
-documentation.
+Using the new Scenario
+----------------------
+Note: All scripts have to be executed with python 3.7.
 
-Challenge Evaluation
----------------------
+To start the scenario run python scenario_runner_extended.py --scenario Dynamic_Walker_Crossing_1". 
+Test each scenario with manual control.  Open a new terminal and run the manual_control.py. A new window should pop up, with an ego vehicle in the middle of the street. Move forward and the leading vehicle will appear
+# Inside the ScenarioRunner root directory
+python manual_control.py
 
-You can evaluate your own agents using a reproduction
-of the CARLA Challenge by following [this tutorial](Docs/challenge_evaluation.md)
+To get a random scenario configuration run "python scenario_runner_extended.py --scenario Dynamic_Walker_Crossing_1 --randomize".
+If you want to repeat a scenario or choose a certain configuration run "python scenario_runner_extended.py --scenario Dynamic_Walker_Crossing_1 --scenario-config <id>"
+    
+There are four Parameters you can set or unset by handing over a four digit binary number.
+
+Choose a Walker (***1) or a Cyclist (***0)
+Choose if Person crosses Street (**1*) or stops before (**0*)
+Choose if a blocker is in front of Person to limit view (*1**) or not (*0**)
+Choose if a container is on the road that you have to evade before (1***) or if the road is clear (0***)
+
+Example: Spawn a Person that crosses the road with a blocker "python scenario_runner_extended.py --scenario DynamicWalkerCrossing_1 --scenario_config 0111" (111 would work the same).
+
+You can choose 7 different Maps with "python scenario_runner_extended.py --scenario DynamicWalkerCrossing_<Map_id>", although the first Map is the most tested version.
+
+Conclusion
+----------
+The scenario_runner_extended.py allows you to run more dynamic scenarios. You can hand over a confi id that further specifies the scenario. 
 
 Contributing
 ------------
 
 Please take a look at our [Contribution guidelines](https://carla.readthedocs.io/en/latest/#contributing).
 
+
+Errors
+------
+ImportError: DLL load failed while importing libcarla
+Make sure you are running the script in python 3.7
+
+Other ImportErrors
+Check if all enviroment paths are correct
+
+
 FAQ
 ------
 
-If you run into problems, check our
+If you run into other problems, check our
 [FAQ](http://carla.readthedocs.io/en/latest/faq/).
 
 License
